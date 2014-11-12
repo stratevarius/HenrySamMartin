@@ -13,8 +13,9 @@ github username: skgrimes
 email: 
 
 
-Martin's Contact Info:
+H. Martin Haley, Jr's Contact Info:
 mobile: 703-906-9400
 github username: hmhaley
 email: mhaley@vmgstrategies.com
 
+edited from dev
