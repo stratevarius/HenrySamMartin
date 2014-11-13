@@ -10,7 +10,7 @@ email: ucla@hotmail.com
 Sam's Contact Info:
 mobile: 401-835-0276
 github username: skgrimes
-email: 
+email: sgrimes401@gmail.com
 
 
 H. Martin Haley, Jr's Contact Info:
