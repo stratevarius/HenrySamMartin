@@ -1,7 +1,7 @@
 HenrySamMartin
 ==============
 
-Henry Szet's Contact Info:
+Henry Szeto's Contact Info:
 mobile: 626-226-7683, 
 github username: hszeto, 
 email: ucla@hotmail.com
