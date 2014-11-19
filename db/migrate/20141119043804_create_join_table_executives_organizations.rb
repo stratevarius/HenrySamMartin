@@ -17,6 +17,8 @@ class CreateJoinTableExecutivesOrganizations < ActiveRecord::Migration
       t.integer :created_by_exec_id
       t.string :exec_comments_on_relationship
       t.string :staff_comments_on_relationship
+      
+      t.timestamps null: false
 
     end
   end
