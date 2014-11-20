@@ -969,6 +969,69 @@ Migrating to CreateExecutives (20141119025445)
   [1m[35mSQL (29.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119025445"]]
   [1m[36m (154.6ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+<<<<<<< HEAD
+  [1m[36m (13.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (3.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrganizations (20141114223505)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (8.9ms)[0m  [1mCREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "address_street" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141114223505"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddDescriptionToOrganizations (20141119021002)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "crunchbase_uuid" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "Org_Types_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "sector_type" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "strat_org_constituent_type" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "description" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "web_url" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "parent_or_child_org" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "parent_org_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "size_revenue" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "size_employees_structured" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "vision" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "mission" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "goals" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "values" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "motto_or_tagline" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_city" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_address_state" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_zip" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_telephone" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_email" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "region_headquartered_in" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "date_org_founded" timestamp
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_twitter" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_linkedin" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_facebook" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_googleplus" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_youtube" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_platform_dominant" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "org_special_designations" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "logo_file_name" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "logo_file_type" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "is_verified_by_staff" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_verified_by_thirdparty" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "exec_comments_on_org" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "staff_comments_on_org" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "created_by_exec_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "certifications" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "source_original" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_active" character varying(255)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119021002"]]
+  [1m[36m (1.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateExecutives (20141119025445)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.7ms)[0m  [1mCREATE TABLE "executives" ("id" serial primary key, "username" character varying(255), "password_digest" character varying(255), "strat_exec_constituent_type" character varying(255), "prefix" character varying(255), "firstname" character varying(255), "lastname" character varying(255), "suffix" character varying(255), "email" character varying(255), "alt_email" character varying(255), "mobile_tel" character varying(255), "mobile_carrier" character varying(255), "office_tel" character varying(255), "home_tel" character varying(255), "fax" character varying(255), "exec_web_url" character varying(255), "exec_description" character varying(255), "address_street" character varying(255), "address_city" character varying(255), "address_state" character varying(255), "address_zip" character varying(255), "demog_spousal_status" character varying(255), "spouse_name" character varying(255), "demog_gender" character varying(255), "demog_ethnicity" character varying(255), "country_of_origin" character varying(255), "demog_sexual_orientation" character varying(255), "social_twitter" character varying(255), "social_linkedin" character varying(255), "social_facebook" character varying(255), "social_googleplus" character varying(255), "social_youtube" character varying(255), "social_pinterest" character varying(255), "social_instagram" character varying(255), "social_photo" character varying(255), "social_blog" character varying(255), "social_platform_dominant" character varying(255), "certifications" character varying(255), "picture_file_name" character varying(255), "picture_file_type" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "exec_comments_on_self" character varying(255), "staff_comments_on_exec" character varying(255), "created_by_exec_id" integer, "is_active" character varying(255), "is_admin" character varying(255), "is_user" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119025445"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+=======
   [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 Migrating to CreateJoinTableExecutivesOrganizations (20141119043804)
   [1m[35m (0.7ms)[0m  BEGIN
@@ -985,10 +1048,8 @@ Migrating to RenameExecutivesOrganizationsToRelationships (20141119210209)
   [1m[35mSQL (6.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119210209"]]
   [1m[36m (165.9ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
-<<<<<<< HEAD
   [1m[36mActiveRecord::SchemaMigration Load (3.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
-=======
 
 
 Started GET "/" for 127.0.0.1 at 2014-11-19 19:13:57 -0800
@@ -9478,4 +9539,293 @@ Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -080
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -0800
->>>>>>> 9080125905839de63c35d465765c8ac314636081
+<<<<<<< HEAD
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 02:40:45 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 414ms (Views: 413.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:46 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 02:40:47 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 02:45:00 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 182ms (Views: 182.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 02:45:01 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 14:39:52 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (2.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 270ms (Views: 269.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/angular-rails-templates.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 14:39:53 -0800
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-20 14:40:08 -0800
+Processing by ExecutivesController#index as JSON
+  [1m[35mExecutive Load (1.9ms)[0m  SELECT "executives".* FROM "executives"
+Completed 200 OK in 10ms (Views: 0.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/" for 127.0.0.1 at 2014-11-20 14:40:17 -0800
+
+ActionController::RoutingError (No route matches [GET] "/api"):
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (8.7ms)
+  Rendered /Users/hmhaleyjr/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (38.5ms)
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-20 14:40:25 -0800
+Processing by ExecutivesController#index as JSON
+  [1m[36mExecutive Load (1.0ms)[0m  [1mSELECT "executives".* FROM "executives"[0m
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  BEGIN
+  [1m[36mSQL (37.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "exec_comments_on_self", "firstname", "is_user", "is_verified_by_staff", "is_verified_by_thirdparty", "lastname", "mobile_carrier", "mobile_tel", "office_tel", "password_digest", "prefix", "social_blog", "social_linkedin", "social_twitter", "strat_exec_constituent_type", "suffix", "updated_at", "username") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 23:01:10 UTC +00:00], ["email", "ucla@hotmail.com"], ["exec_comments_on_self", "henry loves his testing"], ["firstname", "Henry"], ["is_user", true], ["is_verified_by_staff", "not yet verified by staff"], ["is_verified_by_thirdparty", "no third party verification"], ["lastname", "Szeto"], ["mobile_carrier", "att"], ["mobile_tel", "310-999-9999"], ["office_tel", "888-888-8888"], ["password_digest", "password"], ["prefix", "Mr."], ["social_blog", "blog address"], ["social_linkedin", "http://www.linkedin.com/pub/hszeto"], ["social_twitter", "hszeto"], ["strat_exec_constituent_type", "owner"], ["suffix", ""], ["updated_at", Thu, 20 Nov 2014 23:01:10 UTC +00:00], ["username", "sam"]]
+  [1m[35m (157.6ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-20 15:01:30 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ExecutivesController#index as JSON
+  [1m[35mExecutive Load (2.3ms)[0m  SELECT "executives".* FROM "executives"
+Completed 200 OK in 43ms (Views: 31.8ms | ActiveRecord: 5.2ms)
+=======
+>>>>>>> master
+>>>>>>> master
