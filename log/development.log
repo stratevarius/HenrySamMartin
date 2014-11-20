@@ -969,3 +969,19 @@ Migrating to CreateExecutives (20141119025445)
   [1m[35mSQL (29.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119025445"]]
   [1m[36m (154.6ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateJoinTableExecutivesOrganizations (20141119043804)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (23.4ms)[0m  [1mCREATE TABLE "executives_organizations" ("executive_id" integer NOT NULL, "organization_id" integer NOT NULL, "relationship_type" character varying(255), "job_title" character varying(255), "is_relationship_current" character varying(255), "is_relationship_primary" character varying(255), "start_date_month" integer, "start_date_year" integer, "end_date_month" integer, "end_date_year" integer, "is_verified_by_org" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "created_by_exec_id" integer, "exec_comments_on_relationship" character varying(255), "staff_comments_on_relationship" character varying(255)) [0m
+  [1m[35mSQL (3.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119043804"]]
+  [1m[36m (171.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (2.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameExecutivesOrganizationsToRelationships (20141119210209)
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36m (7.4ms)[0m  [1mALTER TABLE "executives_organizations" RENAME TO "relationships"[0m
+  [1m[35mSQL (6.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119210209"]]
+  [1m[36m (165.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
