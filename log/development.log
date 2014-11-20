@@ -9474,3 +9474,72 @@ Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -080
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 10.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/angular-rails-templates.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 09:23:32 -0800
