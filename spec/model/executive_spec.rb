@@ -3,7 +3,7 @@ require 'shoulda/matchers'
 
 describe Executive do
 
-	it {}
+	it {should validate_uniqueness_of(:email)}
 
 
 
