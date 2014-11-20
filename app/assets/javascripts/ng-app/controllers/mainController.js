@@ -12,26 +12,26 @@ angular.module('app')
 
   $scope.createExecutive = function(){
 
-    api.createExecutive(e){
-		username, 
-	 	password_digest, 
-		strat_exec_constituent_type,  (do blank field for now, but we’ll give you a drop down to link to later)
-		prefix, 
-		firstname, 
-		lastname, 
-		suffix, 
-		email, 
-		mobile_tel, 
-		mobile_carrier, 
-		office_tel, 
-		social_twitter, 
-		social_linkedin, 
-		social_blog, 
-		is_verified_by_staff, 
-		is_verified_by_thirdparty, 
-		exec_comments_on_self, 
-		is_user
-	});
+    api.createExecutive(
+	$scope.Username, 
+ 	$scope.Password_digest, 
+	$scope.Strat_exec_constituent_type,
+	$scope.Prefix, 
+	$scope.Firstname, 
+	$scope.Lastname, 
+	$scope.Suffix, 
+	$scope.Email, 
+	$scope.Mobile_tel, 
+	$scope.Mobile_carrier, 
+	$scope.Office_tel, 
+	$scope.Social_twitter, 
+	$scope.Social_linkedin, 
+	$scope.Social_blog, 
+	$scope.Is_verified_by_staff, 
+	$scope.Is_verified_by_thirdparty, 
+	$scope.Exec_comments_on_self, 
+	$scope.Is_user
+	);
 
   };  
 
