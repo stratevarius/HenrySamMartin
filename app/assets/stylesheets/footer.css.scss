@@ -1,0 +1,22 @@
+footer {
+  height: 100px;
+  background-color: #363636;
+  display: table;
+
+
+
+
+}
+
+#footer-text{
+  font-family: georgia;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #f9f9f9;
+  letter-spacing: 3px;
+
+  span {
+    color:red;
+    font-size: 20px;
+  }
+}
