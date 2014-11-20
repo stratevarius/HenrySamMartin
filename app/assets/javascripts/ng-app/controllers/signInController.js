@@ -1,6 +1,6 @@
 angular.module('app')
 
-  .controller('signInController', function ($scope){
+  .controller('signInController', function($scope){
 
 
 });
