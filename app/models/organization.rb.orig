@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+<<<<<<< HEAD
 
 	validates_uniqueness_of :name
 	validates_presence_of :sector_type
@@ -9,6 +10,8 @@ class Organization < ActiveRecord::Base
 	validates_presence_of :hq_address_zip
 	validates_presence_of :hq_telephone
 
+=======
 	has_many :relationships
 	has_many :executives, through: :relationships
+>>>>>>> master
 end

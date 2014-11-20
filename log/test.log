@@ -1,0 +1,528 @@
+  [1m[36m (30.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (8.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrganizations (20141114223505)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (14.7ms)[0m  [1mCREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "address_street" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141114223505"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddDescriptionToOrganizations (20141119021002)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (2.6ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "crunchbase_uuid" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "Org_Types_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "sector_type" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "strat_org_constituent_type" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "description" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "web_url" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "parent_or_child_org" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "parent_org_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "size_revenue" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "size_employees_structured" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "vision" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "mission" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "goals" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "values" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "motto_or_tagline" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_city" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_address_state" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_zip" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_telephone" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_email" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "region_headquartered_in" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "date_org_founded" timestamp
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_twitter" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_linkedin" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_facebook" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_googleplus" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_youtube" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_platform_dominant" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "org_special_designations" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "logo_file_name" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "logo_file_type" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "is_verified_by_staff" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_verified_by_thirdparty" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "exec_comments_on_org" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "staff_comments_on_org" character varying(255)[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "organizations" ADD COLUMN "created_by_exec_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "certifications" character varying(255)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "organizations" ADD COLUMN "source_original" character varying(255)
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_active" character varying(255)[0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119021002"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateExecutives (20141119025445)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "executives" ("id" serial primary key, "username" character varying(255), "password_digest" character varying(255), "strat_exec_constituent_type" character varying(255), "prefix" character varying(255), "firstname" character varying(255), "lastname" character varying(255), "suffix" character varying(255), "email" character varying(255), "alt_email" character varying(255), "mobile_tel" character varying(255), "mobile_carrier" character varying(255), "office_tel" character varying(255), "home_tel" character varying(255), "fax" character varying(255), "exec_web_url" character varying(255), "exec_description" character varying(255), "address_street" character varying(255), "address_city" character varying(255), "address_state" character varying(255), "address_zip" character varying(255), "demog_spousal_status" character varying(255), "spouse_name" character varying(255), "demog_gender" character varying(255), "demog_ethnicity" character varying(255), "country_of_origin" character varying(255), "demog_sexual_orientation" character varying(255), "social_twitter" character varying(255), "social_linkedin" character varying(255), "social_facebook" character varying(255), "social_googleplus" character varying(255), "social_youtube" character varying(255), "social_pinterest" character varying(255), "social_instagram" character varying(255), "social_photo" character varying(255), "social_blog" character varying(255), "social_platform_dominant" character varying(255), "certifications" character varying(255), "picture_file_name" character varying(255), "picture_file_type" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "exec_comments_on_self" character varying(255), "staff_comments_on_exec" character varying(255), "created_by_exec_id" integer, "is_active" character varying(255), "is_admin" character varying(255), "is_user" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119025445"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.3ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 01:40:35 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 01:40:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (1.6ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.3ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:43:43 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:43:43 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.7ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:45:34 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:45:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.5ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:46:13 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:46:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:46:34 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:46:34 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:47:35 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:47:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.9ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:48:26 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:48:26 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:49:20 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:49:20 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:49:51 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:49:51 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.4ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:50:22 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:50:22 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:51:24 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:51:24 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:53:28 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:53:28 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:55:14 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:55:14 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.3ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:57:48 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:57:48 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:58:21 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:58:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@1.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.3ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.9ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 08:58:52 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 08:58:52 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.9ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 09:00:00 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 09:00:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.6ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 09:00:55 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 09:00:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 09:04:10 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 09:04:10 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.3ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 21:53:01 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 21:53:01 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (1.2ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Thu, 20 Nov 2014 21:53:01 UTC +00:00], ["name", "a"], ["updated_at", Thu, 20 Nov 2014 21:53:01 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.4ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Thu, 20 Nov 2014 22:55:55 UTC +00:00], ["email", "a"], ["updated_at", Thu, 20 Nov 2014 22:55:55 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.8ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Thu, 20 Nov 2014 22:55:55 UTC +00:00], ["name", "a"], ["updated_at", Thu, 20 Nov 2014 22:55:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
