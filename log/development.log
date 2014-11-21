@@ -9540,6 +9540,174 @@ Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -080
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 01:03:15 -0800
 >>>>>>> master
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateJoinTableExecutivesOrganizations (20141119043804)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (26.0ms)[0m  [1mCREATE TABLE "executives_organizations" ("executive_id" integer NOT NULL, "organization_id" integer NOT NULL, "relationship_type" character varying(255), "job_title" character varying(255), "is_relationship_current" character varying(255), "is_relationship_primary" character varying(255), "start_date_month" integer, "start_date_year" integer, "end_date_month" integer, "end_date_year" integer, "is_verified_by_org" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "created_by_exec_id" integer, "exec_comments_on_relationship" character varying(255), "staff_comments_on_relationship" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119043804"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+Migrating to RenameExecutivesOrganizationsToRelationships (20141119210209)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "executives_organizations" RENAME TO "relationships"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119210209"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (4.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (1.9ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'ucla@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO "executives" ("created_at", "email", "exec_comments_on_self", "firstname", "is_user", "is_verified_by_staff", "is_verified_by_thirdparty", "lastname", "mobile_carrier", "mobile_tel", "office_tel", "password_digest", "prefix", "social_blog", "social_linkedin", "social_twitter", "strat_exec_constituent_type", "suffix", "updated_at", "username") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 02:26:15 UTC +00:00], ["email", "ucla@hotmail.com"], ["exec_comments_on_self", "henry loves his testing"], ["firstname", "Henry"], ["is_user", true], ["is_verified_by_staff", "not yet verified by staff"], ["is_verified_by_thirdparty", "no third party verification"], ["lastname", "Szeto"], ["mobile_carrier", "att"], ["mobile_tel", "310-999-9999"], ["office_tel", "888-888-8888"], ["password_digest", "password"], ["prefix", "Mr."], ["social_blog", "blog address"], ["social_linkedin", "http://www.linkedin.com/pub/hszeto"], ["social_twitter", "hszeto"], ["strat_exec_constituent_type", "owner"], ["suffix", ""], ["updated_at", Fri, 21 Nov 2014 02:26:15 UTC +00:00], ["username", "sam"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 259ms (Views: 258.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/angular-rails-templates.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 18:27:14 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 18:27:37 -0800
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-20 18:27:50 -0800
+Processing by ExecutivesController#index as JSON
+  [1m[35mExecutive Load (1.0ms)[0m  SELECT "executives".* FROM "executives"
+Completed 200 OK in 33ms (Views: 28.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 8ms (Views: 8.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/angular-rails-templates.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 18:29:06 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 
 
 Started GET "/" for 127.0.0.1 at 2014-11-20 16:09:30 -0800
