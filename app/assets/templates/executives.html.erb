@@ -1,0 +1,11 @@
+<div ng-repeat="executive in executives">
+    
+
+    <p>{{executive.prefix}} {{executive.firstname}} </p>
+    <p>{{executive.lastname}} {{executive.lastname}} </p>
+    <a href="tel">{{executive.mobile_tel}}</a>
+    
+
+    <!-- it is fairly likely this should be authorized for current user only -->
+    <button ng-click="erase()">Remove</button>
+</div>

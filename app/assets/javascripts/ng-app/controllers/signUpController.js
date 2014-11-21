@@ -1,9 +1,24 @@
+
+
 angular.module('app')
 
-  .controller('signUpController', function($scope){
+  .controller('signUpController', function ($scope, api){
 
-  	$scope.showId = function() {
-			console.log($stateParams.id);
-		};
+    
+
+
+    var submitSource = '/api/executives';
+        
+
+    
+    $scope.submitRecord = function(){
+      api.createRecord($scope.user_prefix,$scope.first_name, $scope.last_name, $scope.user_suffix, $scope.user_email );
+    };
+
+
+
+
+
+
 
 });
