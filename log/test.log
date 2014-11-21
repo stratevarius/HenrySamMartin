@@ -526,3 +526,1512 @@ Migrating to CreateExecutives (20141119025445)
   [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
   [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
   [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateJoinTableExecutivesOrganizations (20141119043804)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (21.5ms)[0m  [1mCREATE TABLE "executives_organizations" ("executive_id" integer NOT NULL, "organization_id" integer NOT NULL, "relationship_type" character varying(255), "job_title" character varying(255), "is_relationship_current" character varying(255), "is_relationship_primary" character varying(255), "start_date_month" integer, "start_date_year" integer, "end_date_month" integer, "end_date_year" integer, "is_verified_by_org" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "created_by_exec_id" integer, "exec_comments_on_relationship" character varying(255), "staff_comments_on_relationship" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119043804"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to RenameExecutivesOrganizationsToRelationships (20141119210209)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "executives_organizations" RENAME TO "relationships"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119210209"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (2.5ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (6.2ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:02:19 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:02:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (1.6ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (1.9ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:02:19 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:02:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:04:40 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:04:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:04:40 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:04:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:05:14 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:05:14 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:05:14 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:05:14 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:05:22 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:05:22 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:05:22 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:05:22 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.5ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:06:24 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:06:24 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:06:24 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:06:24 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.5ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:07:13 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:13 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:07:13 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:13 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:07:31 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:31 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (1.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:07:31 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:31 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:07:50 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:50 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:07:50 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:07:50 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:08:02 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:08:02 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.6ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:08:02 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:08:02 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:08:53 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:08:53 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:08:53 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:08:53 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:09:04 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:04 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:09:04 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:04 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.4ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:09:19 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:09:19 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.4ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:09:52 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:52 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:09:52 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:09:52 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:10:00 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:10:00 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:10:12 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:12 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:10:12 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:12 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.6ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.4ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.1ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:10:56 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:56 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.4ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:10:56 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:10:56 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Load (1.2ms)[0m  [1mSELECT "executives".* FROM "executives" ORDER BY "executives"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "executives" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Fri, 21 Nov 2014 09:11:25 UTC +00:00], ["email", "a"], ["updated_at", Fri, 21 Nov 2014 09:11:25 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mExecutive Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'a@a.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.2ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mExecutive Exists (0.3ms)[0m  SELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1
+  [1m[36mExecutive Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "executives" WHERE "executives"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Load (0.7ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 21 Nov 2014 09:11:25 UTC +00:00], ["name", "a"], ["updated_at", Fri, 21 Nov 2014 09:11:25 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1
+  [1m[36mOrganization Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" = 'a' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.2ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1[0m
+  [1m[35mOrganization Exists (0.3ms)[0m  SELECT 1 AS one FROM "organizations" WHERE "organizations"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m

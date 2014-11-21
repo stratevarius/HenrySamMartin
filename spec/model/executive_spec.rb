@@ -3,9 +3,9 @@ require 'shoulda/matchers'
 
 describe Executive do
 
-	it {should validate_uniqueness_of(:email)}
+  it {should validate_uniqueness_of(:email)}
 
-	it do
+  it do
       should allow_value('a@a.com').
                  for(:email)
     end
@@ -22,5 +22,7 @@ describe Executive do
 	it { should validate_presence_of(:firstname) }
 	it { should validate_presence_of(:lastname) }
 
+  #add test for have_many assocaiton
+  it { should have_many(:organizations) }
 
 end
