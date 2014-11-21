@@ -20,6 +20,11 @@ angular.module('app')
           url: '/signup',
           templateUrl: 'signup.html',
           controller: 'signUpController'
+      })
+      .state('executives', {
+          url: '/executives',
+          templateUrl: 'executives.html',
+          controller: 'executiveController'
       });
         
 
