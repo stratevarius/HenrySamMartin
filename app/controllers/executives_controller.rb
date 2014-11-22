@@ -7,9 +7,13 @@ class ExecutivesController < ApplicationController
 
   def create
     executive = Executive.create(exec_params)
-    # planet.name = "Joe's " + planet.name
-    # planet.save
     render json: executive, status: 201
+    if executive.save
+        session[:executive_id] = executive.id
+        redirect_to root_path, notice: "Thank you for signing up!"
+      else
+        render "new"
+    end
   end
 
   def update
@@ -29,7 +33,8 @@ class ExecutivesController < ApplicationController
   def exec_params
     params.require(:executive).permit(
       :username, 
-      :password_digest, 
+      :password,
+      :password_confirmation, 
       :strat_exec_constituent_type, 
       :prefix, 
       :firstname, 
