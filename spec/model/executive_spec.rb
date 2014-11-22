@@ -10,10 +10,10 @@ describe Executive do
                  for(:email)
     end
 
-  	it do
-      should !allow_value('asdf').
-                 for(:email)
-    end
+	it do
+    should !allow_value('asdf').
+               for(:email)
+  end
 
  	it { should ensure_length_of(:email).is_at_most(255)}
 	it { should ensure_length_of(:password_digest).is_at_least(4) }
