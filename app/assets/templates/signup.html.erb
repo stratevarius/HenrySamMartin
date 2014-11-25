@@ -1,17 +1,18 @@
 
 <div class="sign-form-body">
+
   <h1 class="form-title">Sign Up</h1>
 
-
-  
 <form>
   
   <input type="text" placeholder='Prefix' class="form-prefix" ng-model="user_prefix">
+
   <input type="text" placeholder='First Name' class="form-short" ng-model="first_name">
     
-  
   <input type="text" placeholder='Last Name' class="form-short" ng-model="last_name">
+  
   <input type="text" placeholder='Suffix' class="form-suffix" ng-model="user_suffix" >
+
   <input type="text" placeholder="Your Email" ng-model="user_email">
 
   <input type="text" placeholder="Choose a Username" ng-model="username">    
@@ -19,30 +20,27 @@
   <input type="text" placeholder="Choose a Password" ng-model="password">
 
   <input type="text" placeholder="Confirm Password" ng-model="password_confirmation">
-  <input type="text" placeholder="Confirm Password">
 
   <h1 class="form-title">Organization Information</h1>
+
   <input type="text" placeholder='Organization Name'  ng-model="org_name">
+  
   <input type="text" placeholder='address'  ng-model="address">
-    
   
   <input type="text" placeholder='City' class="form-short" ng-model="city">
+  
   <input type="text" placeholder='State' class="form-suffix" ng-model="state" >
+  
   <input type="text" placeholder="Zipcode" ng-model="zip">
-    
   
   <input type="text" placeholder="Sector" >
-
-  
     
   <button ng-click="submitRecord()">Sign Up</button>
   
-  
 </form>
+
 <div class="sign-link-box">
       <p>Already have an account, <a ui-sref="signin">Sign In</a></p>
 </div>
-
-
   
 </div>
