@@ -7,9 +7,7 @@ class Executive < ActiveRecord::Base
 	# validates_presence_of :firstname
 	# validates_presence_of :lastname
 
-end
-class Executive < ActiveRecord::Base
-  has_many :relationships
-  has_many :organizations, through: :relationships
+	has_many :relationships
+	has_many :organizations, through: :relationships
 
 end
