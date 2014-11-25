@@ -17,6 +17,8 @@ angular.module('app')
     createRecord: function( prfx, first, last, sfx, mail){
       // LOOK UP AT POST METHOD IN ANGULAR JS DOC https://docs.angularjs.org/api/ng/service/$http 
       $http.post( '/api/executives', { prefix: prfx  , firstname: first  ,lastname: last, suffix: sfx, email:  mail });
+      window.location = '#/main';
+
     }
     // removeRecord: function(source ){
     //   $http.delete( source + id);
