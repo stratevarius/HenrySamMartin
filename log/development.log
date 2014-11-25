@@ -16549,3 +16549,104 @@ Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-22 17:09:41 -0800
 
 
 Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-22 17:09:41 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 170ms (Views: 169.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/footer.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/form.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/main-view.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/nav.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/angular/angular.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/angular-ui-router/release/angular-ui-router.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/angular-rails-templates.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/app.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/signInController.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/signUpController.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/shared/Signservices.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/shared/config.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/mainController.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/executives.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/signin.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/ng-app/controllers/executiveController.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/signup.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-24 16:50:47 -0800
+
+
+Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-24 16:50:48 -0800
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-24 16:50:56 -0800
+Processing by ExecutivesController#index as JSON
+  [1m[35mExecutive Load (3.0ms)[0m  SELECT "executives".* FROM "executives"
+Completed 200 OK in 65ms (Views: 54.5ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/api/executives" for 127.0.0.1 at 2014-11-24 16:51:13 -0800
+Processing by ExecutivesController#create as JSON
+  Parameters: {"prefix"=>"Mr", "firstname"=>"John", "lastname"=>"Smith", "suffix"=>"Sr", "email"=>"fake@gmai;.cliom", "executive"=>{"prefix"=>"Mr", "firstname"=>"John", "lastname"=>"Smith", "suffix"=>"Sr", "email"=>"fake@gmai;.cliom"}}
+Can't verify CSRF token authenticity
+  [1m[36m (1.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (9.6ms)[0m  INSERT INTO "executives" ("created_at", "email", "firstname", "lastname", "prefix", "suffix", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["created_at", Tue, 25 Nov 2014 00:51:14 UTC +00:00], ["email", "fake@gmai;.cliom"], ["firstname", "John"], ["lastname", "Smith"], ["prefix", "Mr"], ["suffix", "Sr"], ["updated_at", Tue, 25 Nov 2014 00:51:14 UTC +00:00]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 34ms (Views: 1.9ms | ActiveRecord: 16.0ms)
+
+
+Started GET "/api/executives" for 127.0.0.1 at 2014-11-24 16:51:18 -0800
+Processing by ExecutivesController#index as JSON
+  [1m[35mExecutive Load (1.3ms)[0m  SELECT "executives".* FROM "executives"
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 1.3ms)
