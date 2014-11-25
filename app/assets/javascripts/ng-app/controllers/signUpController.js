@@ -7,12 +7,15 @@ angular.module('app')
     
 
 
-    var submitSource = '/api/executives';
+    
         
 
     
     $scope.submitRecord = function(){
-      api.createRecord($scope.user_prefix,$scope.first_name, $scope.last_name, $scope.user_suffix, $scope.user_email );
+      api.createExecutiveRecord($scope.user_prefix,$scope.first_name, $scope.last_name, $scope.user_suffix, $scope.user_email );
+      api.createOrganizationRecord($scope.org_name, $scope.address, $scope.city, $scope.state, $scope.zip, $scope.sector );
+       window.location = '#/main';
+
     };
 
 
