@@ -12140,3 +12140,70 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-20 09:23:31
 
 
 Started GET "/assets/bg.jpg" for 127.0.0.1 at 2014-11-20 09:23:32 -0800
+  [1m[36m (12.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (6.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrganizations (20141114223505)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (9.9ms)[0m  [1mCREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "address_street" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (5.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141114223505"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddDescriptionToOrganizations (20141119021002)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (3.9ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "crunchbase_uuid" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "Org_Types_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "sector_type" character varying(255)[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "organizations" ADD COLUMN "strat_org_constituent_type" character varying(255)
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "description" character varying(255)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "organizations" ADD COLUMN "web_url" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "parent_or_child_org" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "parent_org_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "size_revenue" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "size_employees_structured" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "vision" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "mission" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "goals" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "organizations" ADD COLUMN "values" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "motto_or_tagline" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_city" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_address_state" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_address_zip" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "hq_telephone" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "hq_email" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "region_headquartered_in" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "date_org_founded" timestamp
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_twitter" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_linkedin" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_facebook" character varying(255)[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_googleplus" character varying(255)
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "social_youtube" character varying(255)[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "organizations" ADD COLUMN "social_platform_dominant" character varying(255)
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "org_special_designations" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "logo_file_name" character varying(255)
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "logo_file_type" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "is_verified_by_staff" character varying(255)
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_verified_by_thirdparty" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organizations" ADD COLUMN "exec_comments_on_org" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "staff_comments_on_org" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "created_by_exec_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "certifications" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organizations" ADD COLUMN "source_original" character varying(255)
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "organizations" ADD COLUMN "is_active" character varying(255)[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119021002"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateExecutives (20141119025445)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "executives" ("id" serial primary key, "username" character varying(255), "password_digest" character varying(255), "strat_exec_constituent_type" character varying(255), "prefix" character varying(255), "firstname" character varying(255), "lastname" character varying(255), "suffix" character varying(255), "email" character varying(255), "alt_email" character varying(255), "mobile_tel" character varying(255), "mobile_carrier" character varying(255), "office_tel" character varying(255), "home_tel" character varying(255), "fax" character varying(255), "exec_web_url" character varying(255), "exec_description" character varying(255), "address_street" character varying(255), "address_city" character varying(255), "address_state" character varying(255), "address_zip" character varying(255), "demog_spousal_status" character varying(255), "spouse_name" character varying(255), "demog_gender" character varying(255), "demog_ethnicity" character varying(255), "country_of_origin" character varying(255), "demog_sexual_orientation" character varying(255), "social_twitter" character varying(255), "social_linkedin" character varying(255), "social_facebook" character varying(255), "social_googleplus" character varying(255), "social_youtube" character varying(255), "social_pinterest" character varying(255), "social_instagram" character varying(255), "social_photo" character varying(255), "social_blog" character varying(255), "social_platform_dominant" character varying(255), "certifications" character varying(255), "picture_file_name" character varying(255), "picture_file_type" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "exec_comments_on_self" character varying(255), "staff_comments_on_exec" character varying(255), "created_by_exec_id" integer, "is_active" character varying(255), "is_admin" character varying(255), "is_user" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119025445"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateJoinTableExecutivesOrganizations (20141119043804)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "executives_organizations" ("executive_id" integer NOT NULL, "organization_id" integer NOT NULL, "relationship_type" character varying(255), "job_title" character varying(255), "is_relationship_current" character varying(255), "is_relationship_primary" character varying(255), "start_date_month" integer, "start_date_year" integer, "end_date_month" integer, "end_date_year" integer, "is_verified_by_org" character varying(255), "is_verified_by_staff" character varying(255), "is_verified_by_thirdparty" character varying(255), "created_by_exec_id" integer, "exec_comments_on_relationship" character varying(255), "staff_comments_on_relationship" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119043804"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to RenameExecutivesOrganizationsToRelationships (20141119210209)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "executives_organizations" RENAME TO "relationships"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141119210209"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
