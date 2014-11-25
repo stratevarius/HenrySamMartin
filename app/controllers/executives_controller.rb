@@ -3,38 +3,55 @@ class ExecutivesController < ApplicationController
 skip_before_filter :authorize
 
   def index
-    executives = Executive.all
+    @executives = Executive.all
     render json: executives, status: 200
   end
 
+  def show
+    @executive = Executive.find(params[:id])
+  end
+
+  def new
+    @executive = Executive.new
+  end
+
   def create
-    executive = Executive.create(exec_params)
-    if executive.save
-      session[:executive_id] = executive.id
-      render json: executive, status: 201, 
-      notice: 'User was successfully created, and you will now be directed to the organizations.'
-    # else
-    #   render 'index'
-    end
+    @executive = Executive.new(exec_params)
+      if @executive.save
+        session[:executive_id] = @executive.id
+        redirect_to root_path, 
+        notice: 'User was successfully created.'
+      end
+    render json: executive, status: 201
+  end
+
+  def edit
+    @executive = Enabler.find(params[:id])
   end
 
   def update
-    executive = Executive.find(params[:id])
-    if executive.update_attributes(exec_params)
-      render nothing: true, status: 204, 
+    @executive = Executive.find(params[:id])
+    if @executive.update_attributes(exec_params)
+      redirect_to @executive, 
       notice: 'User was successfully updated.'
-    # else
-    #   render 'index'
+    else
+      render 'edit'
     end
+    render nothing: true, status: 204
   end
 
   def destroy
-    executive = Executive.find(params[:id])
-    executive.destroy
+    @executive = Executive.find(params[:id])
+    @executive.destroy
+    redirect_to root_path
     render nothing: true, status: 204
   end
 
   private
+
+  def set_user
+    @executive = Executive.find(params[:id])
+  end
 
   def exec_params
     params.require(:executive).permit(

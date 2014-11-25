@@ -1,26 +1,48 @@
 class OrganizationsController < ApplicationController
 
+skip_before_filter :authorize
+
   def index
-    organizations = Organization.all
+    @organizations = Organization.all
     render json: organizations, status: 200
   end
 
+  def show
+  	@organization = Organization.find(params[:id])
+  end
+
+  def new
+  	@organization = Organization.new
+  end
+
   def create
-    organization = Organization.create(org_params)
-    # planet.name = "Joe's " + planet.name
-    # planet.save
+    @organization = Organization.new(org_params)
+    if @organization.save
+    	redirect_to organizations_path
+    else
+    	render 'new'
+    end
     render json: organization, status: 201
   end
 
+  def edit
+  	@organization = Organization.find(params[:id])
+  end
+
   def update
-    organization = Organization.find(params[:id])
-    organization.update_attributes(org_params)
+    @organization = Organization.find(params[:id])
+	if @organization.update_attributes(org_params)
+		redirect_to organizations_path
+	else
+		render 'edit'
+	end
     render nothing: true, status: 204
   end
 
   def destroy
-    organization = Organization.find(params[:id])
-    organization.destroy
+    @organization = Organization.find(params[:id])
+    @organization.destroy
+    redirect_to organizations_path
     render nothing: true, status: 204
   end
 

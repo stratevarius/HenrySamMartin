@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
 
-	# validates_uniqueness_of :name
+validates_uniqueness_of :username
 	# validates_presence_of :sector_type
 	# validates_presence_of :web_url
 	# validates_presence_of :hq_address_city
