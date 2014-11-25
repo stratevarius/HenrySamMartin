@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: stratevarius_development
+  database: stratevarius_fork_development
   pool: 5
   username: rails
   password: rails
@@ -47,7 +47,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: stratevarius_test
+  database: stratevarius_fork_test
   pool: 5
   username: 
   password:
@@ -55,7 +55,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: stratevarius_production
+  database: stratevarius_fork_production
   pool: 5
   username: 
   password:
