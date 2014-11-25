@@ -1,5 +1,7 @@
 class ExecutivesController < ApplicationController
 
+skip_before_filter :authorize
+
   def index
     executives = Executive.all
     render json: executives, status: 200
@@ -7,15 +9,23 @@ class ExecutivesController < ApplicationController
 
   def create
     executive = Executive.create(exec_params)
-    # planet.name = "Joe's " + planet.name
-    # planet.save
-    render json: executive, status: 201
+    if executive.save
+      session[:executive_id] = executive.id
+      render json: executive, status: 201, 
+      notice: 'User was successfully created, and you will now be directed to the organizations.'
+    # else
+    #   render 'index'
+    end
   end
 
   def update
     executive = Executive.find(params[:id])
-    executive.update_attributes(exec_params)
-    render nothing: true, status: 204
+    if executive.update_attributes(exec_params)
+      render nothing: true, status: 204, 
+      notice: 'User was successfully updated.'
+    # else
+    #   render 'index'
+    end
   end
 
   def destroy
@@ -29,7 +39,8 @@ class ExecutivesController < ApplicationController
   def exec_params
     params.require(:executive).permit(
       :username, 
-      :password_digest, 
+      :password,
+      :password_confirmation, 
       :strat_exec_constituent_type, 
       :prefix, 
       :firstname, 

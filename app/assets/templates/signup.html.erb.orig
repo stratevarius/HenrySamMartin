@@ -18,7 +18,9 @@
   
   <input type="text" placeholder="Choose a Password" ng-model="password">
 
+<<<<<<< HEAD
   <input type="text" placeholder="Confirm Password" ng-model="password_confirmation">
+=======
   <input type="text" placeholder="Confirm Password">
 
   <h1 class="form-title">Organization Information</h1>
@@ -34,6 +36,7 @@
   <input type="text" placeholder="Sector" >
 
   
+>>>>>>> master
     
   <button ng-click="submitRecord()">Sign Up</button>
   

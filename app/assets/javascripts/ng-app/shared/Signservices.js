@@ -14,9 +14,9 @@ angular.module('app')
       return promise;
 
     },
-    createExecutiveRecord: function( prfx, first, last, sfx, mail){
+    createExecutiveRecord: function( prfx, first, last, sfx, mail, username, pw, pwc){
       // LOOK UP AT POST METHOD IN ANGULAR JS DOC https://docs.angularjs.org/api/ng/service/$http 
-      $http.post( '/api/executives', { prefix: prfx  , firstname: first  ,lastname: last, suffix: sfx, email:  mail });
+      $http.post( '/api/executives', { prefix: prfx  , firstname: first  ,lastname: last, suffix: sfx, email: mail, username: username, password: pw, password_confirmation: pwc });
      
     },
     createOrganizationRecord: function( org_name, address, city, state, zip, sector){
