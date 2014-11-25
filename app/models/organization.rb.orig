@@ -1,11 +1,20 @@
 class Organization < ActiveRecord::Base
 
+<<<<<<< HEAD
+	validates_uniqueness_of :name
+	# validates_presence_of :sector_type
+	validates_presence_of :web_url
+	validates_presence_of :hq_address_city
+	validates_presence_of :hq_address_state
+	validates_presence_of :hq_address_zip
+=======
 	# validates_uniqueness_of :name
 	# validates_presence_of :sector_type
 	# validates_presence_of :web_url
 	# validates_presence_of :hq_address_city
 	# validates_presence_of :hq_address_state
 	# validates_presence_of :hq_address_zip
+>>>>>>> master
 	# validates_presence_of :hq_telephone
 
 	# validates_format_of :hq_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i

@@ -14,16 +14,18 @@ angular.module('app')
       return promise;
 
     },
-    createRecord: function( prfx, first, last, sfx, mail, username, pw, pwc){
+    createExecutiveRecord: function( prfx, first, last, sfx, mail, username, pw, pwc){
       // LOOK UP AT POST METHOD IN ANGULAR JS DOC https://docs.angularjs.org/api/ng/service/$http 
-      $http.post( '/api/executives', { prefix: prfx  , firstname: first  ,lastname: last, suffix: sfx, email:  mail, username: username, password: pw, password_confirmation: pwc });
-      window.location = '#/main';
+      $http.post( '/api/executives', { prefix: prfx  , firstname: first  ,lastname: last, suffix: sfx, email: mail, username: username, password: pw, password_confirmation: pwc });
+     
+    },
+    createOrganizationRecord: function( org_name, address, city, state, zip, sector){
+      // LOOK UP AT POST METHOD IN ANGULAR JS DOC https://docs.angularjs.org/api/ng/service/$http 
+      $http.post( '/api/organizations', { name: org_name  , address_street: address, hq_address_city: city, hq_address_state: state, hq_address_zip: zip, sector_type: sector});
+     
 
     }
-    // removeRecord: function(source ){
-    //   $http.delete( source + id);
-    // }
-    
+
 
   };
 
