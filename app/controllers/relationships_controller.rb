@@ -67,7 +67,10 @@ skip_before_filter :authorize
     :exec_comments_on_relationship, 
     :staff_comments_on_relationship, 
     :created_at, 
-    :updated_at
+    :updated_at,
+    :organization,
+    :organization_attributes
+    # : [:id, :name, :_destroy], 
     )
   end
 

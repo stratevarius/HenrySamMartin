@@ -4,7 +4,7 @@ skip_before_filter :authorize
 
   def index
     @executives = Executive.all
-    render json: executives, status: 200
+    # render json: @executives, status: 200
   end
 
   def show
@@ -13,6 +13,8 @@ skip_before_filter :authorize
 
   def new
     @executive = Executive.new
+    @relationships = @executive.relationships.build
+    @organization = @relationships.build_organization
   end
 
   def create
@@ -21,8 +23,10 @@ skip_before_filter :authorize
         session[:executive_id] = @executive.id
         redirect_to root_path, 
         notice: 'User was successfully created.'
+      else
+        render 'new'
       end
-    render json: executive, status: 201
+    # render json: @executive, status: 201
   end
 
   def edit
@@ -37,17 +41,17 @@ skip_before_filter :authorize
     else
       render 'edit'
     end
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
   def destroy
     @executive = Executive.find(params[:id])
     @executive.destroy
     redirect_to root_path
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
-  private
+private
 
   def set_user
     @executive = Executive.find(params[:id])
@@ -103,7 +107,54 @@ skip_before_filter :authorize
       :is_active, 
       :is_admin, 
       :is_user,
-      organization_ids: []
+      :relationship,
+      relationships_attributes: [:id, :job_title, :is_relationship_current, :_destroy, organization_attributes: [
+        :id,
+        :name, 
+        :address_street, 
+        :created_at, 
+        :updated_at, 
+        :crunchbase_uuid, 
+        :Org_Types_id, 
+        :sector_type, 
+        :strat_org_constituent_type, 
+        :description, 
+        :web_url, 
+        :parent_or_child_org, 
+        :parent_org_id, 
+        :size_revenue, 
+        :size_employees_structured, 
+        :vision, 
+        :mission, 
+        :goals, 
+        :values, 
+        :motto_or_tagline, 
+        :hq_address_city, 
+        :hq_address_state, 
+        :hq_address_zip, 
+        :hq_telephone, 
+        :hq_email, 
+        :region_headquartered_in, 
+        :date_org_founded, 
+        :social_twitter, 
+        :social_linkedin, 
+        :social_facebook, 
+        :social_googleplus, 
+        :social_youtube, 
+        :social_platform_dominant, 
+        :org_special_designations, 
+        :logo_file_name, 
+        :logo_file_type, 
+        :is_verified_by_staff, 
+        :is_verified_by_thirdparty, 
+        :exec_comments_on_org, 
+        :staff_comments_on_org, 
+        :created_by_exec_id, 
+        :certifications, 
+        :source_original, 
+        :is_active
+         ]
+       ]
     )
   end
 

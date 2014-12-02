@@ -4,7 +4,7 @@ skip_before_filter :authorize
 
   def index
     @organizations = Organization.all
-    render json: organizations, status: 200
+    # render json: @organizations, status: 200
   end
 
   def show
@@ -13,6 +13,7 @@ skip_before_filter :authorize
 
   def new
   	@organization = Organization.new
+  	@organization.relationships.build
   end
 
   def create
@@ -22,7 +23,7 @@ skip_before_filter :authorize
     else
     	render 'new'
     end
-    render json: organization, status: 201
+    # render json: @organization, status: 201
   end
 
   def edit
@@ -36,14 +37,14 @@ skip_before_filter :authorize
 	else
 		render 'edit'
 	end
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
   def destroy
     @organization = Organization.find(params[:id])
     @organization.destroy
     redirect_to organizations_path
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
   private
@@ -93,7 +94,31 @@ skip_before_filter :authorize
 		:certifications, 
 		:source_original, 
 		:is_active, 
-		executive_ids: []
+		executive_ids: [],
+		# relationships_attributes: [:job_title, executives_attributes: [:firstname, :lastname]]
+    )
+  end
+
+    def rel_params
+    params.require(:relationship).permit(
+    :executive_id, 
+    :organization_id, 
+    :relationship_type, 
+    :job_title, 
+    :is_relationship_current, 
+    :is_relationship_primary, 
+    :start_date_month, 
+    :start_date_year, 
+    :end_date_month, 
+    :end_date_year, 
+    :is_verified_by_org, 
+    :is_verified_by_staff, 
+    :is_verified_by_thirdparty, 
+    :created_by_exec_id, 
+    :exec_comments_on_relationship, 
+    :staff_comments_on_relationship, 
+    :created_at, 
+    :updated_at
     )
   end
 

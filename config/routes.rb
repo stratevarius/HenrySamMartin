@@ -16,6 +16,8 @@ Stratevarius::Application.routes.draw do
 
 	resources :sessions
 
+	get 'home/' => 'home#index', as: :home
+
 	get 'executives/' => 'executives#index', as: :executives
 	get 'executives/new' => 'executives#new', as: :new_executive
 	get 'executives/:id' => 'executives#show', as: :executive
