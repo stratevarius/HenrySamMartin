@@ -1,46 +1,14 @@
  <p class="nested-fields">
  <div class="controls">
 
-  <%= f.text_field :is_relationship_current, :placeholder => "Is this your current employer?" %>
+  <%#= f.text_field :is_relationship_current, :placeholder => "Is this your current employer?" %>
 
   <%= f.text_field :job_title, :placeholder => "Job Title" %>
 
   <%= f.fields_for :organization do |relationship_organization| %>
-
-      <%= relationship_organization.text_field :name, :placeholder => "** NAME => of Your Company/Organization" %>
-
-  <%= relationship_organization.text_field :sector_type, :placeholder => "**** SECTOR => is it a Private, Public or Nonprofit Org?" %>
-
-  <%= relationship_organization.text_field :Org_Types_id, :placeholder => "**** ORG TYPE => Startup? Strategic Consulting? Mentoring?" %>
-
-  <%= relationship_organization.text_field :size_employees_structured, :placeholder => "**** SIZE => Size of the Org (by number of employees)" %>
-
-  <%= relationship_organization.text_field :region_headquartered_in, :placeholder => "**** REGION => where the Org is Primarily Headquartered?" %>
-
-  <%= relationship_organization.text_field :address_street, :placeholder => "** STREET => the Org's main Business Address/Location" %>
-
-  <%= relationship_organization.text_field :hq_address_city, :placeholder => "** CITY => current focus is LA Orgs, but all are Welcome" %>
-
-  <%= relationship_organization.text_field :hq_address_state, :placeholder => "** STATE => current focus is CA Orgs, but all are Welcome" %>
-
-  <%= relationship_organization.text_field :hq_address_zip, :placeholder => "** ZIP => five digits, or all nine, if you know them please" %>
-
-   <%= relationship_organization.text_field :description, :placeholder => "** DESCRIPTION => What the Org does, Why, & For Whom" %>
-
-  <%= relationship_organization.text_field :web_url, :placeholder => "WEB => the Org's Website URL (include 'http://')" %>
-
-  <%= relationship_organization.text_field :hq_telephone, :placeholder => "TEL => the Org's main/official telephone number" %>
-
-  <%= relationship_organization.text_field :hq_email, :placeholder => "EMAIL => the Org's main email address (if monitored)" %>
-
-  <%= relationship_organization.text_field :social_platform_dominant, :placeholder => "**** SOCIAL => the Org's dominant Social Media Platform" %>
-
-  <%= relationship_organization.hidden_field :is_verified_by_staff, :value => "not yet verified" %>
-
-  <%= relationship_organization.hidden_field :is_verified_by_thirdparty, :value => "not yet verified" %>
+    <%= render 'organization_fields', f: relationship_organization %>
   <% end %>
-  
-  <%= link_to_remove_association "remove", f %>
+
 
 </div>
 </p>

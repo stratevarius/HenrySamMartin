@@ -32,15 +32,15 @@
     
   <%= f.text_field :lastname, :placeholder => "Last Name" %>
   
-  <%= f.text_field :suffix, :placeholder => "Suffix  (exs: Jr., Sr., III, Esq.)" %>
+  <%#= f.text_field :suffix, :placeholder => "Suffix  (exs: Jr., Sr., III, Esq.)" %>
 
   <%= f.text_field :email, :placeholder => "Email" %>
 
-  <%= f.text_field :strat_exec_constituent_type, :placeholder => "Stratevarius Constituent Type" %>
+  <%#= f.text_field :strat_exec_constituent_type, :placeholder => "Stratevarius Constituent Type" %>
 
   <%= f.text_field :mobile_tel, :placeholder => "Mobile Tel Number" %>
 
-  <%= f.text_field :mobile_carrier, :placeholder => "Mobile Carrier" %>
+  <%#= f.text_field :mobile_carrier, :placeholder => "Mobile Carrier" %>
 
   <%= f.text_field :office_tel, :placeholder => "Office Tel" %>
 
@@ -50,7 +50,7 @@
 
   <%= f.text_field :social_blog, :placeholder => "Blog Link" %>
 
-  <%= f.text_field :exec_comments_on_self, :placeholder => "Comments" %>
+  <%#= f.text_field :exec_comments_on_self, :placeholder => "Comments" %>
 
   <%= f.hidden_field :is_verified_by_staff, :value => "not yet verified" %>
 
@@ -70,10 +70,7 @@
   <%= f.fields_for :relationships do |relationship| %>
         <%= render 'relationship_fields', f: relationship %> 
   <% end %>
-  <%= link_to_add_association 'Add Your Company/Organization', f, :relationships, 
-    'data-association-insertion-node' => "#executive-organizations ol", 
-    'data-association-insertion-method' => "append", 
-    :wrap_object => Proc.new {|relationship| relationship.build_organization; relationship } %>
+
 
   </fieldset>
 <hr><br><br>

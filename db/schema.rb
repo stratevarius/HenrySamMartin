@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 20141201232256) do
   end
 
   create_table "relationships", force: true do |t|
-    t.integer  "executive_id",                   null: false
-    t.integer  "organization_id",                null: false
+    t.integer  "executive_id"
+    t.integer  "organization_id"
     t.string   "relationship_type"
     t.string   "job_title"
     t.string   "is_relationship_current"
@@ -133,8 +133,11 @@ ActiveRecord::Schema.define(version: 20141201232256) do
     t.integer  "created_by_exec_id"
     t.string   "exec_comments_on_relationship"
     t.string   "staff_comments_on_relationship"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "relationships", ["executive_id"], name: "index_relationships_on_executive_id", using: :btree
+  add_index "relationships", ["organization_id"], name: "index_relationships_on_organization_id", using: :btree
 
 end

@@ -1,25 +1,13 @@
-<div class="sign-form-body">
+<p class="nested-fields">
+  <div class="controls">
 
-  <h1 class="form-title">Sign Up &nbsp;&nbsp;&nbsp;=> &nbsp;&nbsp;&nbsp;Step 1</h1>
-
-<h1 class="form-title">Add Your 
-Company / Org</h1>
-<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** = Required fields that must be completed to submit.</b><br>
-<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can come back at any time to update/add to/edit your profile</i><br>
-<br>
-</b>
-<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**** = Needs a drop-down box (pulling from a state table/model)</i><br>
-<br>
-<%= form_for @organization do |f| %>
-<%= form_for @relationship do |r| %>
-  
-  <%= f.text_field :name, :placeholder => "** NAME => of Your Company/Organization" %>
+<%= f.text_field :name, :placeholder => "** NAME => of Your Company/Organization" %>
 
   <%= f.text_field :sector_type, :placeholder => "**** SECTOR => is it a Private, Public or Nonprofit Org?" %>
 
-  <%= f.text_field :Org_Types_id, :placeholder => "**** ORG TYPE => Startup? Strategic Consulting? Mentoring?" %>
+  <%#= f.text_field :Org_Types_id, :placeholder => "**** ORG TYPE => Startup? Strategic Consulting? Mentoring?" %>
 
-  <%= f.text_field :size_employees_structured, :placeholder => "**** SIZE => Size of the Org (by number of employees)" %>
+  <%#= f.text_field :size_employees_structured, :placeholder => "**** SIZE => Size of the Org (by number of employees)" %>
 
   <%= f.text_field :region_headquartered_in, :placeholder => "**** REGION => where the Org is Primarily Headquartered?" %>
 
@@ -37,25 +25,13 @@ Company / Org</h1>
 
   <%= f.text_field :hq_telephone, :placeholder => "TEL => the Org's main/official telephone number" %>
 
-  <%= f.text_field :hq_email, :placeholder => "EMAIL => the Org's main email address (if monitored)" %>
+  <%#= f.text_field :hq_email, :placeholder => "EMAIL => the Org's main email address (if monitored)" %>
 
-  <%= f.text_field :social_platform_dominant, :placeholder => "**** SOCIAL => the Org's dominant Social Media Platform" %>
+  <%#= f.text_field :social_platform_dominant, :placeholder => "**** SOCIAL => the Org's dominant Social Media Platform" %>
 
   <%= f.hidden_field :is_verified_by_staff, :value => "not yet verified" %>
 
   <%= f.hidden_field :is_verified_by_thirdparty, :value => "not yet verified" %>
 
-  <%= r.text_field :job_title, :placeholder => "** JOB TITLE => your official Job Title at the Org" %>
-
-  
-
-  <%= f.submit "Submit" %>
-  
-<% end %>
-<% end %>
-
-<div class="sign-link-box">
-      <p>Already have an account, <a ui-sref="signin">Sign In</a></p>
-</div>
-  
-</div>
+  </div>
+</p>

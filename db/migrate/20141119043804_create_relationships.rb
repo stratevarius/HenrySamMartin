@@ -1,8 +1,9 @@
-class CreateJoinTableExecutivesOrganizations < ActiveRecord::Migration
+class CreateRelationships < ActiveRecord::Migration
   def change
-    create_join_table :executives, :organizations do |t|
-      # t.index [:executive_id, :organization_id]
-      # t.index [:organization_id, :executive_id]
+    create_table :relationships do |t|
+      t.references :executive, index: true
+      t.references :organization, index: true
+
       t.string :relationship_type
       t.string :job_title
       t.string :is_relationship_current
@@ -17,9 +18,8 @@ class CreateJoinTableExecutivesOrganizations < ActiveRecord::Migration
       t.integer :created_by_exec_id
       t.string :exec_comments_on_relationship
       t.string :staff_comments_on_relationship
-      
-      t.timestamps null: false
 
+      t.timestamps
     end
   end
 end

@@ -14,7 +14,6 @@ class Organization < ActiveRecord::Base
 
 	has_many :relationships
 	has_many :executives, through: :relationships
-	# accepts_nested_attributes_for :executives
-	# accepts_nested_attributes_for :relationships, allow_destroy: true
+	accepts_nested_attributes_for :relationships, allow_destroy: true
 	
 end

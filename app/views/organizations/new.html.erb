@@ -45,15 +45,10 @@ Company / Org</h1>
 
   <%= f.hidden_field :is_verified_by_thirdparty, :value => "not yet verified" %>
 
-<%= form_for @relationships do |relationship| %>
-<%= render 'relationship_fields', :f => task
-<%= link_to_add_association 'Add Job Title &amp; Company/Organization' f, :relationships %>
-
-  <%#= r.text_field :job_title, :placeholder => "** JOB TITLE => your official Job Title at the Org" %> 
+  <%= f.hidden_field :is_verified_by_thirdparty, :value => "not yet verified" %>
 
   <%= f.submit "Submit" %>
   
-<% end %>
 <% end %>
 
 <div class="sign-link-box">

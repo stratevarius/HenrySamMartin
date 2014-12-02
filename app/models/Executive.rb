@@ -18,6 +18,7 @@ has_secure_password
 	accepts_nested_attributes_for :relationships, 
            :reject_if => :all_blank, 
            :allow_destroy => true
+           
 	accepts_nested_attributes_for :organizations
 
 
