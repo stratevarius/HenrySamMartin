@@ -4,7 +4,7 @@ skip_before_filter :authorize
 
   def index
     @executives = Executive.all
-    render json: executives, status: 200
+    # render json: @executives, status: 200
   end
 
   def show
@@ -13,6 +13,7 @@ skip_before_filter :authorize
 
   def new
     @executive = Executive.new
+    @executive.relationships.build
   end
 
   def create
@@ -22,7 +23,7 @@ skip_before_filter :authorize
         redirect_to root_path, 
         notice: 'User was successfully created.'
       end
-    render json: executive, status: 201
+    # render json: @executive, status: 201
   end
 
   def edit
@@ -37,17 +38,17 @@ skip_before_filter :authorize
     else
       render 'edit'
     end
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
   def destroy
     @executive = Executive.find(params[:id])
     @executive.destroy
     redirect_to root_path
-    render nothing: true, status: 204
+    # render nothing: true, status: 204
   end
 
-  private
+private
 
   def set_user
     @executive = Executive.find(params[:id])
@@ -103,7 +104,10 @@ skip_before_filter :authorize
       :is_active, 
       :is_admin, 
       :is_user,
-      organization_ids: []
+      :relationship,
+      :relationships_attributes,
+      # : [:id, :job_title, :is_relationship_current, :_destroy], 
+      organizations_ids: []
     )
   end
 

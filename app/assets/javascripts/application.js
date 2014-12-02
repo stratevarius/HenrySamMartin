@@ -15,5 +15,6 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
+//= require cocoon
 //= require_tree .
 //= require_tree ../templates

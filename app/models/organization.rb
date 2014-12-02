@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
 
-validates_uniqueness_of :username
+# validates_uniqueness_of :username
 	# validates_presence_of :sector_type
 	# validates_presence_of :web_url
 	# validates_presence_of :hq_address_city
@@ -14,5 +14,7 @@ validates_uniqueness_of :username
 
 	has_many :relationships
 	has_many :executives, through: :relationships
+	# accepts_nested_attributes_for :executives
+	# accepts_nested_attributes_for :relationships, allow_destroy: true
 	
 end

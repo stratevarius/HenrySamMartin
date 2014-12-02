@@ -32,6 +32,8 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'cocoon'
+
 #use Bower to locally manage dependencies\
 gem 'bower-rails'
 
