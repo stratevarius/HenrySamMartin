@@ -47,9 +47,9 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: stratevarius_withoutangular_test
+  database: travis_ci_test
   pool: 5
-  username: 
+  username: postgresql
   password:
 
 production:
