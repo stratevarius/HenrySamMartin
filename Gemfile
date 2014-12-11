@@ -42,6 +42,8 @@ gem 'bower-rails'
 #Add factory girl
 gem 'factory_girl_rails'
 
+gem 'rails_12factor'
+
 group :development, :test do
   #...gems above ommited for brevity
 
