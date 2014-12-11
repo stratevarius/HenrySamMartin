@@ -1,1 +1,41 @@
-<h1> This is the Organizations Index Page </h1>
+<br><br><br><br>
+<br><br><b><p align="center"></b>Organizations in LA that provide Consulting Services<br><br>in the areas of SEO &amp; Co-Working Space</p>
+<br><br>
+<!-- styling for Google map -->
+  <style type="text/css">
+      #map-canvas { height: 300px; margin: 0 auto; padding: 0; width: 600px;}
+  </style>
+
+  <!-- requiring Google map -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    
+  <!-- Google map javascript functionality -->
+  <script type="text/javascript">
+      function initialize() {
+        // Initial center point
+        var myCenter = new google.maps.LatLng(34.0500,-118.2500);
+        var mapOptions = {
+          center: myCenter,
+          zoom: 10
+        };
+        // Render map
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        // List all markers
+        <% @organizations.each do |orgl| %>
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng("<%= orgl.latitude%>", "<%= orgl.longitude%>"),
+            map: map, 
+            title: "<%= orgl.name %>"
+          });
+          // Marker clickable
+          google.maps.event.addListener(marker, 'click', function() {
+            window.location.href = "http://<%=orgl.web_url%>";
+          });
+        <% end %>
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+<div id="map-canvas"></div>
