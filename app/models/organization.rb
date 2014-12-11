@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-
+	extend ::Geocoder::Model::ActiveRecord
 # validates_uniqueness_of :username
 	# validates_presence_of :sector_type
 	# validates_presence_of :web_url
@@ -16,4 +16,20 @@ class Organization < ActiveRecord::Base
 	has_many :executives, through: :relationships
 	accepts_nested_attributes_for :relationships, allow_destroy: true
 	
+# GeoCoder at work 
+	geocoded_by :full_address
+  	after_validation :geocode
+
+  	def full_address
+    	return "#{address_street}, #{hq_address_city}, #{hq_address_zip}"
+  	end
+
+	def geo_center
+	    @organizations = Organization.all 
+	    	@organizations.each do |d|
+	      		coords.push(d.full_address.coordinates)
+	      		Geocoder::Calculations.geographic_center(coords)
+	    	end
+	end
+
 end
